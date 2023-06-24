@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,700;1,800&family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
+
 *,
 *::before,
 *::after {
@@ -16,10 +19,16 @@ p {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
+  font-family: Barlow, sans-serif;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  color: #d0d6f9;
 }
 
 img,

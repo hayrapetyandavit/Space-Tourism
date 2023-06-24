@@ -1,0 +1,23 @@
+.content {
+  background: url("/assets/home/background-home-desktop.jpg")
+    no-repeat fixed center / cover;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 7rem 1.5rem 3rem;
+  overflow: auto;
+}
+
+@media (768px <= width <= 1439px) {
+  .content {
+    background-image: url("/assets/home/background-home-tablet.jpg");
+  }
+}
+
+@media (width < 767.98px) {
+  .content {
+    background-image: url("/public/assets/home/background-home-mobile.jpg");
+  }
+}
