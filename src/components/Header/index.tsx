@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "/assets/shared/logo.svg";
+import menuOpen from "/assets/shared/icon-hamburger.svg";
+import menuClose from "/assets/shared/icon-close.svg";
 
 import classes from "./styles.module.scss";
 
 const Header: React.FC = () => {
   const [isLinkActive, setIsLinkActive] = useState<Boolean>(false);
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
+  const handleBurgerClick = () => {
+    setMenuOpen((prevState) => !prevState);
+  };
   return (
     <header className={classes.header}>
       <div>
@@ -14,8 +20,11 @@ const Header: React.FC = () => {
           <img src={logo} alt="Logo" />
         </Link>
       </div>
+      <div className={classes.burgerMenu} id={classes.hi} onClick={handleBurgerClick}>
+        {isMenuOpen ? (<img src={menuClose} alt="Close icon" />) : (<img src={menuOpen} alt="Burger icon" />)}
+      </div>
       <hr className={classes.headerHr} />
-      <nav className={classes.navigationMenu}>
+      <nav className={`${classes.navigationMenu} ${!isMenuOpen ? classes.menuActive : null}`}>
         <hr className={classes.navHr} />
         <ul className={classes.linksList}>
           <li>

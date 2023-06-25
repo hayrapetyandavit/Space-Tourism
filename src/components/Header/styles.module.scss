@@ -1,14 +1,17 @@
 .header {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 0 55px;
-  display: flex;
   background: transparent;
+  padding: 40px 0px 0px 55px;
   z-index: 3;
+
   .headerHr {
-    // display: inline-block;
     border: none;
     border-top: solid 1px #979797;
     margin: 0;
@@ -16,18 +19,19 @@
     margin-left: 64px;
   }
 }
-
+.burgerMenu {
+  display: none;
+}
 .navigationMenu {
-  width: 51vw;
   max-height: 96px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(41px);
+  padding: 39px 167px 38px 123px;
   .navHr {
     position: absolute;
-    // display: inline-block;
     top: 48px;
     left: 0;
     width: 65px;
@@ -38,7 +42,6 @@
 }
 
 .linksList {
-  width: 65%;
   display: flex;
   gap: 48px;
   padding: 38px 0;
@@ -53,7 +56,7 @@
   letter-spacing: 2.7px;
   color: #fff;
   text-transform: uppercase;
-  span {
+  .linkIndex {
     font-weight: 700;
   }
   .activeLink {
@@ -65,15 +68,18 @@
   }
 }
 
-@media (768px <= width <= 1439px) {
+@media (max-width: 1438.98px) {
   .header {
-    margin: 2px 0 0 39px;
+    padding: 2px 0 0 39px;
+    hr {
+      display: none;
+    }
   }
-  hr {
-    display: none;
+  .navigationMenu {
+    padding: 39px 65px 40px 48px;
   }
   .link {
-    span {
+    .linkIndex {
       display: none;
     }
     .activeLink {
@@ -82,5 +88,42 @@
   }
 }
 
-@media (width < 767.98px) {
+@media (max-width: 767.98px) {
+  .header {
+    padding: 25px;
+  }
+  .navigationMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    // left: -100%;
+    width: 70%;
+    min-height: 100vh;
+    justify-content: start;
+    align-items: start;
+    padding: 0;
+    z-index: -1;
+    .linksList {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 118px 0 0 32px;
+    }
+  }
+  .menuActive {
+    left: -100%;
+  }
+  .link {
+    gap: 11px;
+    .linkIndex {
+      display: block;
+    }
+    .activeLink {
+      display: none;
+    }
+  }
+  .burgerMenu {
+    display: block;
+    cursor: pointer;
+  }
 }
