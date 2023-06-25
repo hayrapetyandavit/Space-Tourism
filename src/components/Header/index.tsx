@@ -1,9 +1,12 @@
-import React from "react";
-import logo from "/assets/shared/logo.svg";
-import classes from "./styles.module.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "/assets/shared/logo.svg";
+
+import classes from "./styles.module.scss";
 
 const Header: React.FC = () => {
+  const [isLinkActive, setIsLinkActive] = useState<Boolean>(false);
+
   return (
     <header className={classes.header}>
       <div>
@@ -17,22 +20,23 @@ const Header: React.FC = () => {
         <ul className={classes.linksList}>
           <li>
             <Link className={classes.link} to="/">
-              <span className={classes.linkIndex}>00</span> HOME
+              <span className={classes.linkIndex}>00</span> home
+              <div className={classes.activeLink}></div>
             </Link>
           </li>
           <li>
             <Link className={classes.link} to="/destination">
-              <span className={classes.linkIndex}>01</span> DESTINATION
+              <span className={classes.linkIndex}>01</span> destination
             </Link>
           </li>
           <li>
             <Link className={classes.link} to="/crew">
-              <span className={classes.linkIndex}>02</span> CREW
+              <span className={classes.linkIndex}>02</span> crew
             </Link>
           </li>
           <li>
             <Link className={classes.link} to="/technology">
-              <span className={classes.linkIndex}>03</span> TECHNOLOGY
+              <span className={classes.linkIndex}>03</span> technology
             </Link>
           </li>
         </ul>
