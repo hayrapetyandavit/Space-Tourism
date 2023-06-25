@@ -65,12 +65,16 @@
   .linkIndex {
     font-weight: 700;
   }
-  .activeLink {
+  .activeLink,
+  .hoveredLink {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 3px;
     background-color: #fff;
+  }
+  .hoveredLink {
+    background-color: #ffffff5b;
   }
 }
 
@@ -82,7 +86,7 @@
     }
   }
   .navigationMenu {
-    padding: 39px 65px 40px 48px;
+    padding: 0 65px 0 48px;
   }
   .link {
     .linkIndex {
@@ -102,7 +106,6 @@
     position: fixed;
     top: 0;
     right: 0;
-    // left: -100%;
     width: 70%;
     min-height: 100vh;
     justify-content: start;

@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import classes from "./styles.module.scss";
 
 const Home: React.FC = () => {
+  const handleButtonClick = () => {
+
+  }
+  
   return (
     <div className={classes.content}>
       <div className={classes.textContent}>
@@ -17,7 +21,7 @@ const Home: React.FC = () => {
         </p>
       </div>
       <Link to="/destination">
-        <button>EXPLORE</button>
+        <button className={classes.exploreBtn} onClick={handleButtonClick}>EXPLORE</button>
       </Link>
     </div>
   );

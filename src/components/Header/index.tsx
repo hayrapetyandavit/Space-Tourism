@@ -10,14 +10,22 @@ const linkData = ["home", "destination", "crew", "technology"];
 
 const Header: React.FC = () => {
   const [activeLink, setActiveLink] = useState<string>("home");
+  const [hoveredLink, setHoveredLink] = useState<null | number>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // const url = new URL(window.location.href);
+    // const path = url.pathname;
+    // console.log(path.slice(1));
+    setActiveLink(e.currentTarget.innerText.slice(3).toLowerCase());
+  };
+
+  const handleLinkHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setHoveredLink(+e.currentTarget.innerText.slice(1, 3));
+  };
 
   const handleBurgerClick = () => {
     setMenuOpen((prevState) => !prevState);
-  };
-
-  const handleLinkClick = (e: any) => {
-    setActiveLink(e.target.innerText.slice(3).toLowerCase());
   };
 
   return (
@@ -53,10 +61,15 @@ const Header: React.FC = () => {
                   className={classes.link}
                   to={link === "home" ? "/" : link}
                   onClick={handleLinkClick}
+                  onMouseOver={handleLinkHover}
+                  onMouseOut={() => setHoveredLink(null)}
                 >
                   <span className={classes.linkIndex}>0{index}</span> {link}
                   {activeLink === link ? (
                     <div className={classes.activeLink}></div>
+                  ) : null}
+                  {hoveredLink === index ? (
+                    <div className={classes.hoveredLink}></div>
                   ) : null}
                 </Link>
               </li>
