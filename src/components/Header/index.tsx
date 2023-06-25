@@ -6,13 +6,20 @@ import menuClose from "/assets/shared/icon-close.svg";
 
 import classes from "./styles.module.scss";
 
+const linkData = ["home", "destination", "crew", "technology"];
+
 const Header: React.FC = () => {
-  const [isLinkActive, setIsLinkActive] = useState<Boolean>(false);
+  const [activeLink, setActiveLink] = useState<string>("home");
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
   const handleBurgerClick = () => {
     setMenuOpen((prevState) => !prevState);
   };
+
+  const handleLinkClick = (e: any) => {
+    setActiveLink(e.target.innerText.slice(3).toLowerCase());
+  };
+
   return (
     <header className={classes.header}>
       <div>
@@ -20,34 +27,40 @@ const Header: React.FC = () => {
           <img src={logo} alt="Logo" />
         </Link>
       </div>
-      <div className={classes.burgerMenu} id={classes.hi} onClick={handleBurgerClick}>
-        {isMenuOpen ? (<img src={menuClose} alt="Close icon" />) : (<img src={menuOpen} alt="Burger icon" />)}
+      <div
+        className={classes.burgerMenu}
+        id={classes.hi}
+        onClick={handleBurgerClick}
+      >
+        {isMenuOpen ? (
+          <img src={menuClose} alt="Close icon" />
+        ) : (
+          <img src={menuOpen} alt="Burger icon" />
+        )}
       </div>
       <hr className={classes.headerHr} />
-      <nav className={`${classes.navigationMenu} ${!isMenuOpen ? classes.menuActive : null}`}>
+      <nav
+        className={`${classes.navigationMenu} ${
+          !isMenuOpen ? classes.menuActive : null
+        }`}
+      >
         <hr className={classes.navHr} />
         <ul className={classes.linksList}>
-          <li>
-            <Link className={classes.link} to="/">
-              <span className={classes.linkIndex}>00</span> home
-              <div className={classes.activeLink}></div>
-            </Link>
-          </li>
-          <li>
-            <Link className={classes.link} to="/destination">
-              <span className={classes.linkIndex}>01</span> destination
-            </Link>
-          </li>
-          <li>
-            <Link className={classes.link} to="/crew">
-              <span className={classes.linkIndex}>02</span> crew
-            </Link>
-          </li>
-          <li>
-            <Link className={classes.link} to="/technology">
-              <span className={classes.linkIndex}>03</span> technology
-            </Link>
-          </li>
+          {linkData &&
+            linkData.map((link, index) => (
+              <li key={Math.random()}>
+                <Link
+                  className={classes.link}
+                  to={link === "home" ? "/" : link}
+                  onClick={handleLinkClick}
+                >
+                  <span className={classes.linkIndex}>0{index}</span> {link}
+                  {activeLink === link ? (
+                    <div className={classes.activeLink}></div>
+                  ) : null}
+                </Link>
+              </li>
+            ))}
         </ul>
       </nav>
     </header>
