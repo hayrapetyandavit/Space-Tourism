@@ -30,11 +30,11 @@ const Header: React.FC = () => {
 
   return (
     <header className={classes.header}>
-      <div>
+      <>
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-      </div>
+      </>
       <div
         className={classes.burgerMenu}
         id={classes.hi}
@@ -48,9 +48,8 @@ const Header: React.FC = () => {
       </div>
       <hr className={classes.headerHr} />
       <nav
-        className={`${classes.navigationMenu} ${
-          !isMenuOpen ? classes.menuActive : null
-        }`}
+        className={`${classes.navigationMenu} ${!isMenuOpen ? classes.menuActive : null
+          }`}
       >
         <hr className={classes.navHr} />
         <ul className={classes.linksList}>
