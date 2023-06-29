@@ -1,0 +1,134 @@
+.content {
+  position: relative;
+  height: 100vh;
+  padding: 198px 137px 0 165px;
+  overflow: auto;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url("/assets/crew/background-crew-desktop.jpg") no-repeat fixed center / cover;
+    filter: blur(12px); /* Add the blur effect */
+  }
+
+.intro {
+  color: #fff;
+  font-size: 28px;
+  letter-spacing: 4.725px;
+  text-transform: uppercase;
+  span {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.25;
+    letter-spacing: 4.725px;
+    margin-right: 28px;
+  }
+}
+
+.changingContent {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  //   box-shadow: 0 0 4px 0 white;
+}
+
+.textContent {
+  width: 50%;
+  //   box-shadow: 0 0 4px 0 white;
+  padding: 154px 0 94px 0;
+}
+
+.imageContainer {
+  width: 50%;
+  //   box-shadow: 0 0 4px 0 white;
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    // box-shadow: 0 0 4px 0 white;
+  }
+}
+
+.subtitle {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 400;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: Bellefair;
+  color: #fff;
+  font-size: 56px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 27px;
+}
+
+.text {
+  width: 80%;
+  min-height: 140px;
+  //   height: auto;
+  font-size: 18px;
+  line-height: 32px;
+  margin-bottom: 120px;
+  //   box-shadow: 0 0 4px 0 white;
+}
+
+.linksList {
+  // position: fixed;
+  display: flex;
+  gap: 24px;
+  li {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #fff;
+    opacity: 0.17;
+    cursor: pointer;
+  }
+  .activeLink {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1438.98px) {
+  .content {
+    background-image: url("/assets/crew/background-crew-tablet.jpg");
+  }
+  .intro {
+    font-size: 20px;
+    letter-spacing: 3.375px;
+    span {
+      font-size: 20px;
+      letter-spacing: 3.375px;
+      margin-right: 19px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .content {
+    background-image: url("/public/assets/crew/background-crew-mobile.jpg");
+  }
+  .intro {
+    font-size: 16px;
+    letter-spacing: 1.7px;
+    span {
+      font-size: 16px;
+      letter-spacing: 1.7px;
+      margin-right: 8px;
+    }
+  }
+}

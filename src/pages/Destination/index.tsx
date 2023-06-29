@@ -10,7 +10,7 @@ const Destination: React.FC = () => {
   return (
     <div className={classes.content}>
       <h2 className={classes.intro}>
-        <span>01</span> Pick your destination
+        <span>01</span> pick your destination
       </h2>
       <div className={classes.changingContent}>
         <div className={classes.imageContainer}>
@@ -23,6 +23,7 @@ const Destination: React.FC = () => {
                 data.destinations.map((item, index) => (
                   <>
                     <li
+                      key={Math.random()}
                       onClick={() => setActiveIndex(index)}
                       onMouseOver={() => setHoveredLink(index)}
                       onMouseOut={() => setHoveredLink(null)}
