@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   gap: 21px;
+  padding-bottom: 90px;
 }
 
 .title {
@@ -62,6 +63,7 @@
   }
   .textContent {
     align-items: center;
+    padding-bottom: 0;
   }
   .intro {
     text-align: center;

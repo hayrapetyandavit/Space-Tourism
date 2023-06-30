@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../../../public/assets/data.json";
 
 import classes from "./styles.module.scss";
@@ -6,6 +6,11 @@ import classes from "./styles.module.scss";
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [hoveredLink, setHoveredLink] = useState<null | number>(null);
+
+  useEffect(() => {
+      // localStorage.removeItem("path")
+      // console.log("dest unmount")
+  }, [])
 
   return (
     <div className={classes.content}>
@@ -21,22 +26,20 @@ const Destination: React.FC = () => {
             <ul className={classes.linksList}>
               {data &&
                 data.destinations.map((item, index) => (
-                  <>
-                    <li
-                      key={Math.random()}
-                      onClick={() => setActiveIndex(index)}
-                      onMouseOver={() => setHoveredLink(index)}
-                      onMouseOut={() => setHoveredLink(null)}
-                    >
-                      <span>{item.name}</span>
-                      {activeIndex === index ? (
-                        <div className={classes.activeLink}></div>
-                      ) : null}
-                      {hoveredLink === index ? (
-                        <div className={classes.hoveredLink}></div>
-                      ) : null}
-                    </li>
-                  </>
+                  <li
+                    key={Math.random()}
+                    onClick={() => setActiveIndex(index)}
+                    onMouseOver={() => setHoveredLink(index)}
+                    onMouseOut={() => setHoveredLink(null)}
+                  >
+                    <span>{item.name}</span>
+                    {activeIndex === index ? (
+                      <div className={classes.activeLink}></div>
+                    ) : null}
+                    {hoveredLink === index ? (
+                      <div className={classes.hoveredLink}></div>
+                    ) : null}
+                  </li>
                 ))}
             </ul>
           </nav>

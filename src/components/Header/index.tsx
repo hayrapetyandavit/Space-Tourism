@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { LinkContext, LinkContextType } from "../../context/LinkContext";
 import logo from "/assets/shared/logo.svg";
 import menuOpen from "/assets/shared/icon-hamburger.svg";
 import menuClose from "/assets/shared/icon-close.svg";
@@ -9,14 +10,14 @@ import classes from "./styles.module.scss";
 const linkData = ["home", "destination", "crew", "technology"];
 
 const Header: React.FC = () => {
-  const [activeLink, setActiveLink] = useState<string>("home");
   const [hoveredLink, setHoveredLink] = useState<null | number>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
+  const { activeLink, setActiveLink } = useContext(
+    LinkContext
+  ) as LinkContextType;
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // const url = new URL(window.location.href);
-    // const path = url.pathname;
-    // console.log(path.slice(1));
     setActiveLink(e.currentTarget.innerText.slice(3).toLowerCase());
   };
 
@@ -30,11 +31,9 @@ const Header: React.FC = () => {
 
   return (
     <header className={classes.header}>
-      <>
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
-      </>
+      <Link to="/" className={classes.logoLInk}>
+        <img src={logo} alt="Logo" />
+      </Link>
       <div
         className={classes.burgerMenu}
         id={classes.hi}
@@ -48,8 +47,9 @@ const Header: React.FC = () => {
       </div>
       <hr className={classes.headerHr} />
       <nav
-        className={`${classes.navigationMenu} ${!isMenuOpen ? classes.menuActive : null
-          }`}
+        className={`${classes.navigationMenu} ${
+          !isMenuOpen ? classes.menuActive : null
+        }`}
       >
         <hr className={classes.navHr} />
         <ul className={classes.linksList}>

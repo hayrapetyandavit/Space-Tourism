@@ -1,23 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import data from "../../../public/assets/data.json";
 
 import classes from "./styles.module.scss";
 
 const Crew: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const timeoutRef = useRef<NodeJS.Timer | number>();
 
-  useEffect(() => {
-    const slider = setInterval(() => {
+  const startTimeout = () => {
+    timeoutRef.current = setInterval(() => {
       setActiveIndex((prevIndex) => {
         if (prevIndex === 3) prevIndex = -1;
         return ++prevIndex;
       });
     }, 4000);
+  };
 
+  useEffect(() => {
+    startTimeout();
     return () => {
-      clearInterval(slider);
+      clearTimeout(timeoutRef.current);
     };
   }, []);
+
+  const handleLinkClick = (index: any) => {
+    setActiveIndex(index);
+    clearTimeout(timeoutRef.current);
+    startTimeout();
+  };
 
   return (
     <div className={classes.content}>
@@ -37,7 +47,7 @@ const Crew: React.FC = () => {
                   className={`${
                     activeIndex === index ? classes.activeLink : null
                   }`}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => handleLinkClick(index)}
                 ></li>
               ))}
           </ul>
