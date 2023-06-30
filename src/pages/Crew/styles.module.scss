@@ -15,7 +15,7 @@
   z-index: -1;
   background: url("/assets/crew/background-crew-desktop.jpg") no-repeat fixed
     center / cover;
-  filter: blur(12px); /* Add the blur effect */
+  filter: blur(12px);
 }
 
 .intro {
@@ -38,23 +38,19 @@
   display: flex;
   justify-content: space-between;
   gap: 80px;
-  // box-shadow: 0 0 4px 0 white;
 }
 
 .textContent {
   width: 50%;
-  //   box-shadow: 0 0 4px 0 white;
   padding: 154px 0 94px 0;
 }
 
 .imageContainer {
   width: 50%;
-  //   box-shadow: 0 0 4px 0 white;
   img {
     position: absolute;
     right: 0;
     bottom: 0;
-    // box-shadow: 0 0 4px 0 white;
   }
 }
 
