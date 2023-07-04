@@ -98,7 +98,7 @@ hr {
 }
 
 .activeLink,
-.hoveredLink {
+.hovered {
   position: absolute;
   width: 100%;
   height: 3px;
@@ -106,8 +106,16 @@ hr {
   margin-top: 12px;
 }
 
-.hoveredLink {
-  background-color: #ffffff5b;
+.hovered {
+  background-color: transparent;
+}
+
+.linksList {
+  li:hover {
+    .hovered {
+      background-color: #ffffff5b;
+    }
+  }
 }
 
 @media (max-width: 1438.98px) {

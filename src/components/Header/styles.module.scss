@@ -68,15 +68,23 @@
     font-weight: 700;
   }
   .activeLink,
-  .hoveredLink {
+  .hovered {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 3px;
     background-color: #fff;
   }
-  .hoveredLink {
-    background-color: #ffffff5b;
+  .hovered {
+    background-color: transparent;
+  }
+}
+
+.linksList {
+  li:hover {
+    .hovered {
+      background-color: #ffffff5b;
+    }
   }
 }
 

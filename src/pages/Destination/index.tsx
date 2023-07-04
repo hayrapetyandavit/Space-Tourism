@@ -6,43 +6,19 @@ import data from "../../../public/assets/data.json";
 import test from "../../../public/assets/destination/test.png"
 
 import classes from "./styles.module.scss";
+import { useKeyPress } from "../../hooks/useKeyPress";
 
-const Destination: React.FC = React.memo(() => {
+const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [hoveredLink, setHoveredLink] = useState<null | number>(null);
+
   const containerRef = useRef<any | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-
 
   const handleLinkClick = useCallback((index: number) => {
     setActiveIndex(index);
   }, []);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    e.stopPropagation();
-    if (e.key === "ArrowRight") {
-      setActiveIndex((prev) => (prev === 3 ? (prev = 0) : ++prev));
-    }
-  }, [])
-
-  const handleKeyUp = useCallback((e: KeyboardEvent) => {
-    e.stopPropagation();
-    (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setActiveIndex((prev) => (prev === 0 ? (prev = 3) : --prev));
-      }
-    };
-  }, [])
-
-  React.useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keydown", handleKeyUp);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keydown", handleKeyUp);
-    };
-  }, [handleKeyUp, handleKeyDown]);
+  useKeyPress(setActiveIndex);
 
   React.useEffect(() => {
     const container = containerRef.current;
@@ -118,18 +94,15 @@ const Destination: React.FC = React.memo(() => {
               {data &&
                 data.destinations.map((item, index) => (
                   <li
+                    id={`${index}`}
                     key={index}
                     onClick={() => handleLinkClick(index)}
-                    onMouseOver={() => setHoveredLink(index)}
-                    onMouseOut={() => setHoveredLink(null)}
                   >
                     <span>{item.name}</span>
                     {activeIndex === index ? (
                       <div className={classes.activeLink}></div>
                     ) : null}
-                    {hoveredLink === index ? (
-                      <div className={classes.hoveredLink}></div>
-                    ) : null}
+                    <div className={classes.hovered}></div>
                   </li>
                 ))}
             </ul>
@@ -155,5 +128,5 @@ const Destination: React.FC = React.memo(() => {
       </div>
     </div>
   );
-})
+}
 export default Destination;

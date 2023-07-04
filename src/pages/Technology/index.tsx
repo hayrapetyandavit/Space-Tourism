@@ -2,31 +2,12 @@ import React, { useState } from "react";
 import data from "../../../public/assets/data.json";
 
 import classes from "./styles.module.scss";
+import { useKeyPress } from "../../hooks/useKeyPress";
 
 const Technology: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
-      setActiveIndex((prev) => (prev === 2 ? (prev = 0) : ++prev));
-    }
-  };
-
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key === "ArrowUp") {
-      setActiveIndex((prev) => (prev === 0 ? (prev = 2) : --prev));
-    }
-  };
-
-  React.useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keydown", handleKeyUp);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keydown", handleKeyUp);
-    };
-  }, []);
+  useKeyPress(setActiveIndex);
 
   return (
     <div className={classes.content}>
