@@ -1,12 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
-
+import { useKeyPress } from "../../hooks/useKeyPress";
 import data from "../../../public/assets/data.json";
-
-import test from "../../../public/assets/destination/test.png"
+import soundSpace from "../../../public/assets/space.mp3"
 
 import classes from "./styles.module.scss";
-import { useKeyPress } from "../../hooks/useKeyPress";
 
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -18,7 +16,7 @@ const Destination: React.FC = () => {
     setActiveIndex(index);
   }, []);
 
-  useKeyPress(setActiveIndex);
+  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"]);
 
   React.useEffect(() => {
     const container = containerRef.current;
@@ -26,12 +24,11 @@ const Destination: React.FC = () => {
 
     const { clientWidth, clientHeight } = container;
 
-    if (!rendererRef.current) {
-      rendererRef.current = new THREE.WebGLRenderer();
-      rendererRef.current.setClearColor(0xffffff, 0);
-      container.appendChild(rendererRef.current.domElement);
-      rendererRef.current.setSize(clientWidth, clientHeight);
-    }
+    rendererRef.current = new THREE.WebGLRenderer();
+    rendererRef.current.setClearColor(0xffffff, 0);
+
+    container.appendChild(rendererRef.current.domElement);
+    rendererRef.current.setSize(clientWidth, clientHeight);
 
     // Scene initialization
     const scene = new THREE.Scene();
@@ -44,8 +41,8 @@ const Destination: React.FC = () => {
     scene.add(ambientLight);
 
     // Planet setup
-    // const planetTexture = new THREE.TextureLoader().load(data.destinations[activeIndex].images.png);
-    const planetTexture = new THREE.TextureLoader().load(test);
+    const planetTexture = new THREE.TextureLoader().load(data.destinations[activeIndex].images.horizontal);
+    // const planetTexture = new THREE.TextureLoader().load(test);
 
     const planet = new THREE.Mesh(
       new THREE.SphereGeometry(1.4, 64, 64),
@@ -58,7 +55,6 @@ const Destination: React.FC = () => {
     // Animation
     function animate() {
       requestAnimationFrame(animate);
-
       planet.rotation.y += 0.003;
       planet.rotation.x += 0.002;
       planet.rotation.z += 0.002;
@@ -66,23 +62,48 @@ const Destination: React.FC = () => {
     }
 
     animate();
-
+    
     return () => {
       if (containerRef.current) {
         containerRef.current.removeChild(rendererRef.current?.domElement);
-        rendererRef.current?.dispose();
-        rendererRef.current = null;
       }
     }
 
   }, [activeIndex])
 
-  console.log('RENDER')
+  useEffect(() => {
+    const container = containerRef.current;
+
+    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+
+    // create an AudioListener and add it to the camera----------------------
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    // create a global audio source
+    const sound = new THREE.Audio(listener);
+
+    // load a sound and set it as the Audio object's buffer---------------------
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load(soundSpace, (buffer) => {
+      sound.setBuffer(buffer);
+      sound.setLoop(true);
+      sound.setVolume(0.5);
+      sound.play();
+    });
+    return () => {
+      sound.pause();
+    }
+  }, [])
+
 
   return (
     <div className={classes.content}>
       <h2 className={classes.intro}>
-        <span>01</span> pick your destination
+        <>
+          <span>01</span> pick your destination
+          {console.log('RENDER')}
+        </>
       </h2>
       <div className={classes.changingContent}>
         <div className={classes.imageContainer} ref={containerRef}>
@@ -129,4 +150,4 @@ const Destination: React.FC = () => {
     </div>
   );
 }
-export default Destination;
+export default React.memo(Destination);
