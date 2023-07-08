@@ -5,18 +5,23 @@ import data from "../../../public/assets/data.json";
 import soundSpace from "../../../public/assets/space.mp3"
 
 import classes from "./styles.module.scss";
+import { useResize } from "../../hooks/useResize";
 
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isTablet, setTablet] = useState<boolean>(false);
+  const [isMobile, setMobile] = useState<boolean>(false);
 
   const containerRef = useRef<any | null>(null);
-  // const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
 
   const handleLinkClick = (index: number) => {
     setActiveIndex(index);
   };
 
   useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 3);
+
+  useResize(1438.98, setTablet);
+  useResize(767.98, setMobile);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -29,22 +34,13 @@ const Destination: React.FC = () => {
     const canvasWidth = window.innerWidth;
     let canvasHeight = 480;
 
-    function handleResize() {
-      if (window.innerWidth < 1439 && window.innerWidth >= 768) {
-        canvasHeight = 300;
-      } else if (window.innerWidth <= 767.98) {
-        canvasHeight = 170;
-      } else {
-        canvasHeight = container.clientHeight;
-      }
-      renderer.setSize(canvasWidth, canvasHeight);
-      camera.aspect = canvasWidth / canvasHeight;
-      camera.updateProjectionMatrix();
+    if (isTablet && !isMobile) {
+      canvasHeight = 300;
+    } else if (isMobile) {
+      canvasHeight = 170;
+    } else {
+      canvasHeight = container.clientHeight;
     }
-  
-
-    window.addEventListener('resize', handleResize);
-
     renderer.setSize(canvasWidth, canvasHeight);
 
     const scene = new THREE.Scene();
@@ -74,14 +70,12 @@ const Destination: React.FC = () => {
     animate();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
     }
-  }, [activeIndex]);
+  }, [activeIndex, isTablet, isMobile]);
 
 
   useEffect(() => {

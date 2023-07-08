@@ -3,11 +3,20 @@ import data from "../../../public/assets/data.json";
 
 import classes from "./styles.module.scss";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import { useResize } from "../../hooks/useResize";
 
 const Technology: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isTablet, setTablet] = useState<boolean>(false);
 
-  useKeyPress(setActiveIndex, ["ArrowUp", "ArrowDown"], 2);
+  useResize(1438.98, setTablet);
+
+  if (isTablet) {
+    useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 2);
+  } else {
+    useKeyPress(setActiveIndex, ["ArrowUp", "ArrowDown"], 2);
+  }
+console.log(isTablet)
 
   return (
     <div className={classes.content}>
