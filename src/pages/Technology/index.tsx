@@ -7,12 +7,12 @@ import { useKeyPress } from "../../hooks/useKeyPress";
 const Technology: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  useKeyPress(setActiveIndex, ["ArrowUp", "ArrowDown"]);
+  useKeyPress(setActiveIndex, ["ArrowUp", "ArrowDown"], 2);
 
   return (
     <div className={classes.content}>
       <h2 className={classes.intro}>
-        <span>03</span> space lounch 101
+        <span className={classes.introIndex}>03</span> space lounch 101
       </h2>
       <div className={classes.changingContent}>
         <div className={classes.textContent}>

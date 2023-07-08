@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 .content {
   background: url("/assets/destination/background-destination-desktop.jpg")
     no-repeat fixed center / cover;
@@ -7,18 +9,10 @@
 }
 
 .intro {
-  color: #fff;
-  font-size: 28px;
-  letter-spacing: 4.725px;
-  text-transform: uppercase;
+  @include intro;
   margin-bottom: 64px;
-  span {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    opacity: 0.25;
-    letter-spacing: 4.725px;
-    margin-right: 28px;
+  .introIndex {
+    @include introIndex;
   }
 }
 
@@ -32,7 +26,6 @@
   width: 50%;
   display: flex;
   justify-content: center;
-
   img {
     padding-top: 24px;
   }
@@ -65,9 +58,7 @@
 }
 
 .text {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 32px;
+  @include text;
 }
 
 hr {
@@ -124,12 +115,9 @@ hr {
     padding: 136px 60px 0;
   }
   .intro {
-    font-size: 20px;
-    letter-spacing: 3.375px;
-    span {
-      font-size: 20px;
-      letter-spacing: 3.375px;
-      margin-right: 19px;
+    @include introTablet;
+    .introIndex {
+      @include introIndexTablet;
     }
   }
   .changingContent {
@@ -150,9 +138,7 @@ hr {
     margin: 32px 0 8px 0;
   }
   .text {
-    font-size: 16px;
-    line-height: 28px;
-    text-align: center;
+    @include textTablet;
   }
   hr {
     margin: 49px 0 28px 0;
@@ -166,12 +152,9 @@ hr {
     padding: 130px 24px 0;
   }
   .intro {
-    font-size: 16px;
-    letter-spacing: 1.7px;
-    span {
-      font-size: 16px;
-      letter-spacing: 1.7px;
-      margin-right: 8px;
+    @include introMobile;
+    .introIndex {
+      @include introIndexMobile;
     }
   }
   .linksList {

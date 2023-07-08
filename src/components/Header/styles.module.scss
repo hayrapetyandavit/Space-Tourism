@@ -102,9 +102,6 @@
     .linkIndex {
       display: none;
     }
-    .activeLink {
-      width: 50px;
-    }
   }
 }
 
@@ -133,6 +130,7 @@
     left: -100%;
   }
   .link {
+    display: inline-flex;
     gap: 11px;
     .linkIndex {
       display: block;

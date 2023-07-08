@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import data from "../../../public/assets/data.json";
 
 import classes from "./styles.module.scss";
+import { useKeyPress } from "../../hooks/useKeyPress";
 
 const Crew: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const timeoutRef = useRef<NodeJS.Timer | number>();
+
+  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 3);
 
   const startTimeout = () => {
     timeoutRef.current = setInterval(() => {
@@ -32,7 +35,7 @@ const Crew: React.FC = () => {
   return (
     <div className={classes.content}>
       <h2 className={classes.intro}>
-        <span>02</span> meet your crew
+        <span className={classes.introIndex}>02</span> meet your crew
       </h2>
       <div className={classes.changingContent}>
         <div className={classes.textContent}>

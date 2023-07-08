@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
 import { useKeyPress } from "../../hooks/useKeyPress";
 import data from "../../../public/assets/data.json";
@@ -10,39 +10,50 @@ const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const containerRef = useRef<any | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  // const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
 
-  const handleLinkClick = useCallback((index: number) => {
+  const handleLinkClick = (index: number) => {
     setActiveIndex(index);
-  }, []);
+  };
 
-  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"]);
+  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 3);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const { clientWidth, clientHeight } = container;
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(0xffffff, 0);
 
-    rendererRef.current = new THREE.WebGLRenderer();
-    rendererRef.current.setClearColor(0xffffff, 0);
+    container.appendChild(renderer.domElement);
+    const canvasWidth = window.innerWidth;
+    let canvasHeight = 480;
 
-    container.appendChild(rendererRef.current.domElement);
-    rendererRef.current.setSize(clientWidth, clientHeight);
+    function handleResize() {
+      if (window.innerWidth < 1439 && window.innerWidth >= 768) {
+        canvasHeight = 300;
+      } else if (window.innerWidth <= 767.98) {
+        canvasHeight = 170;
+      } else {
+        canvasHeight = container.clientHeight;
+      }
+      renderer.setSize(canvasWidth, canvasHeight);
+      camera.aspect = canvasWidth / canvasHeight;
+      camera.updateProjectionMatrix();
+    }
+  
 
-    // Scene initialization
+    window.addEventListener('resize', handleResize);
+
+    renderer.setSize(canvasWidth, canvasHeight);
+
     const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, canvasWidth / canvasHeight, 0.1, 1000);
 
-    // Camera initialization
-    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-
-    // Global light
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
-    // Planet setup
     const planetTexture = new THREE.TextureLoader().load(data.destinations[activeIndex].images.horizontal);
-    // const planetTexture = new THREE.TextureLoader().load(test);
 
     const planet = new THREE.Mesh(
       new THREE.SphereGeometry(1.4, 64, 64),
@@ -52,24 +63,26 @@ const Destination: React.FC = () => {
     planet.position.z = -3;
     scene.add(planet);
 
-    // Animation
     function animate() {
       requestAnimationFrame(animate);
       planet.rotation.y += 0.003;
       planet.rotation.x += 0.002;
       planet.rotation.z += 0.002;
-      rendererRef.current?.render(scene, camera);
+      renderer.render(scene, camera);
     }
 
     animate();
-    
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeChild(rendererRef.current?.domElement);
-      }
-    }
 
-  }, [activeIndex])
+    return () => {
+      window.removeEventListener('resize', handleResize);
+
+      if (containerRef.current) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
+    }
+  }, [activeIndex]);
+
 
   useEffect(() => {
     const container = containerRef.current;
@@ -96,19 +109,13 @@ const Destination: React.FC = () => {
     }
   }, [])
 
-
   return (
     <div className={classes.content}>
       <h2 className={classes.intro}>
-        <>
-          <span>01</span> pick your destination
-          {console.log('RENDER')}
-        </>
+        <span className={classes.introIndex}>01</span> pick your destination
       </h2>
       <div className={classes.changingContent}>
-        <div className={classes.imageContainer} ref={containerRef}>
-          {/* <img src={data.destinations[activeIndex].images.png} alt=""  /> */}
-        </div>
+        <div className={classes.imageContainer} ref={containerRef}></div>
         <div className={classes.textContent}>
           <nav className={classes.navbarDestination}>
             <ul className={classes.linksList}>
@@ -150,4 +157,4 @@ const Destination: React.FC = () => {
     </div>
   );
 }
-export default React.memo(Destination);
+export default Destination;

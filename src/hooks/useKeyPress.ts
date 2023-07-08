@@ -2,22 +2,23 @@ import React from "react";
 
 export const useKeyPress = (
   setState: React.Dispatch<React.SetStateAction<number>>,
-  events: Array<string>
+  events: Array<string>,
+  points: number
 ) => {
   const handleKeyEvent = (e: KeyboardEvent) => {
     e.stopPropagation();
     switch (e.key && events.find((ev) => ev === e.key)) {
       case "ArrowUp":
-        setState((prev) => (prev === 0 ? (prev = 2) : --prev));
+        setState((prev) => (prev === 0 ? (prev = points) : --prev));
         break;
       case "ArrowDown":
-        setState((prev) => (prev === 2 ? (prev = 0) : ++prev));
+        setState((prev) => (prev === points ? (prev = 0) : ++prev));
         break;
       case "ArrowLeft":
-        setState((prev) => (prev === 0 ? (prev = 3) : --prev));
+        setState((prev) => (prev === 0 ? (prev = points) : --prev));
         break;
       case "ArrowRight":
-        setState((prev) => (prev === 3 ? (prev = 0) : ++prev));
+        setState((prev) => (prev === points ? (prev = 0) : ++prev));
         break;
     }
   };
