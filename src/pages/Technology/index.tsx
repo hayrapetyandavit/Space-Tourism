@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import data from "../../../public/assets/data.json";
-
-import classes from "./styles.module.scss";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { useResize } from "../../hooks/useResize";
+import { genId } from "../../utils/genId";
+
+import classes from "./styles.module.scss";
 
 const Technology: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -29,7 +30,7 @@ console.log(isTablet)
             {data &&
               data.technology.map((item, index) => (
                 <li
-                  key={Math.random()}
+                  key={genId()}
                   className={`${activeIndex === index ? classes.activeLink : null
                     }`}
                   onClick={() => setActiveIndex(index)}

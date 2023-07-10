@@ -3,9 +3,9 @@ import * as THREE from 'three';
 import { useKeyPress } from "../../hooks/useKeyPress";
 import data from "../../../public/assets/data.json";
 import soundSpace from "../../../public/assets/space.mp3"
-
-import classes from "./styles.module.scss";
 import { useResize } from "../../hooks/useResize";
+import { genId } from "../../utils/genId";
+import classes from "./styles.module.scss";
 
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -114,7 +114,7 @@ const Destination: React.FC = () => {
                 data.destinations.map((item, index) => (
                   <li
                     id={`${index}`}
-                    key={index}
+                    key={genId()}
                     onClick={() => handleLinkClick(index)}
                   >
                     <span>{item.name}</span>

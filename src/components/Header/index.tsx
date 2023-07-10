@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LinkContext, LinkContextType } from "../../context/LinkContext";
+import { genId } from "../../utils/genId";
 import logo from "/assets/shared/logo.svg";
 import menuOpen from "/assets/shared/icon-hamburger.svg";
 import menuClose from "/assets/shared/icon-close.svg";
@@ -49,7 +50,7 @@ const Header: React.FC = () => {
         <ul className={classes.linksList}>
           {linkData &&
             linkData.map((link, index) => (
-              <li key={Math.random()}>
+              <li key={genId()}>
                 <Link
                   className={classes.link}
                   to={link === "home" ? "/" : link}

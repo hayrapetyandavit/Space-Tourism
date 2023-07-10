@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import data from "../../../public/assets/data.json";
-
-import classes from "./styles.module.scss";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import { genId } from "../../utils/genId";
+import classes from "./styles.module.scss";
 
 const Crew: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -46,7 +46,7 @@ const Crew: React.FC = () => {
             {data &&
               data.crew.map((item, index) => (
                 <li
-                  key={Math.random()}
+                  key={genId()}
                   className={`${
                     activeIndex === index ? classes.activeLink : null
                   }`}
