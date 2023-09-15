@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { genId } from "../../utils/genId";
 import { dataType } from "../../types/dataType";
@@ -21,7 +21,7 @@ const View: FC<IProps> = ({ data, activeIndex, setActiveIndex }) => {
         <div className={classes.textContent}>
           <ul className={classes.linksList}>
             {data &&
-              data.technology.map((item, index) => (
+              data.technology.map((_item, index) => (
                 <li
                   key={genId()}
                   className={`${

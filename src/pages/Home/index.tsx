@@ -5,7 +5,7 @@ import { LinkContext, LinkContextType } from "../../context/LinkContext";
 import View from "./View";
 
 const Home: React.FC = () => {
-  const { activeLink, setActiveLink } = useContext(
+  const { setActiveLink } = useContext(
     LinkContext
   ) as LinkContextType;
 
