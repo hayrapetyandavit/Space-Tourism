@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { useResize } from "../../hooks/useResize";
 import { useKeyPress } from "../../hooks/useKeyPress";
 
-import data from "../../../public/assets/data.json";
-import soundSpace from "../../../public/assets/space.mp3";
+import data from "../../assets/data.json";
+import soundSpace from "../../../src/assets/space.mp3";
 
 import View from "./View";
 

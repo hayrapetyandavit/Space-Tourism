@@ -15,7 +15,7 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: url("/assets/crew/background-crew-desktop.jpg") no-repeat fixed
+  background: url("../../assets/crew/background-crew-desktop.jpg") no-repeat fixed
     center / cover;
   filter: blur(12px);
 }
@@ -95,7 +95,7 @@
     padding: 240px 155px 0 155px;
   }
   .content::before {
-    background: url("/assets/crew/background-crew-tablet.jpg") no-repeat fixed
+    background: url("../../assets/crew/background-crew-tablet.jpg") no-repeat fixed
       center / cover;
   }
   .intro {
@@ -159,7 +159,7 @@
     padding: 180px 34px 0 34px;
   }
   .content::before {
-    background: url("/assets/crew/background-crew-mobile.jpg") no-repeat fixed
+    background: url("../../assets/crew/background-crew-mobile.jpg") no-repeat fixed
       center / cover;
   }
   .intro {

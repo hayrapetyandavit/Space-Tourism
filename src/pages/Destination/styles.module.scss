@@ -1,7 +1,7 @@
 @import "../../styles/mixins";
 
 .content {
-  background: url("/assets/destination/background-destination-desktop.jpg")
+  background: url("../../assets/destination/background-destination-desktop.jpg")
     no-repeat fixed center / cover;
   height: 100vh;
   display: flex;
@@ -113,7 +113,7 @@ hr {
 
 @media (max-width: 1438.98px) {
   .content {
-    background-image: url("/assets/destination/background-destination-tablet.jpg");
+    background-image: url("../../assets/destination/background-destination-tablet.jpg");
     padding: 136px 60px 0;
   }
   .intro {
@@ -149,7 +149,7 @@ hr {
 
 @media (max-width: 767.98px) {
   .content {
-    background-image: url("/public/assets/destination/background-destination-mobile.jpg");
+    background-image: url("../../assets/destination/background-destination-mobile.jpg");
     text-align: center;
     padding: 130px 24px 0;
   }

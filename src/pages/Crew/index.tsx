@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useKeyPress } from "../../hooks/useKeyPress";
 
-import data from "../../../public/assets/data.json";
+import data from "../../assets/data.json";
 
 import View from "./View";
 
@@ -33,7 +33,7 @@ const Crew: React.FC = () => {
     clearTimeout(timeoutRef.current);
     startTimeout();
   };
-
+console.log(data)
   return <View data={data} activeIndex={activeIndex} handleLinkClick={handleLinkClick} />;
 };
 

@@ -44,7 +44,7 @@ const View: FC<IProps> = ({ data, activeIndex, setActiveIndex }) => {
           </div>
         </div>
         <div className={classes.imageContainer}>
-          <img src={data.technology[activeIndex].images.portrait} alt="" />
+          <img src={data.technology[activeIndex].images.portrait} alt="Technology" />
         </div>
       </div>
     </div>

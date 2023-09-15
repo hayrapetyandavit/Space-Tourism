@@ -2,7 +2,7 @@
 
 .content {
   position: relative;
-  background: url("/assets/technology/background-technology-desktop.jpg")
+  background: url("../../assets/technology/background-technology-desktop.jpg")
     no-repeat fixed center / cover;
   height: 100vh;
   padding: 212px 0 0 163px;
@@ -93,7 +93,7 @@
 
 @media (max-width: 1438.98px) {
   .content {
-    background-image: url("/assets/technology/background-technology-tablet.jpg");
+    background-image: url("../../assets/technology/background-technology-tablet.jpg");
     padding: 212px 0 0 0;
   }
   .intro {
@@ -152,7 +152,7 @@
 
 @media (max-width: 767.98px) {
   .content {
-    background-image: url("/public/assets/technology/background-technology-mobile.jpg");
+    background-image: url("../../assets/technology/background-technology-mobile.jpg");
   }
   .intro {
     width: 100%;

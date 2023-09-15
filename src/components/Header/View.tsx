@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { genId } from "../../utils/genId";
 
-import logo from "/assets/shared/logo.svg";
-import menuClose from "/assets/shared/icon-close.svg";
-import menuOpen from "/assets/shared/icon-hamburger.svg";
+import logo from "../../assets/shared/logo.svg";
+import menuClose from "../../assets/shared/icon-close.svg";
+import menuOpen from "../../assets/shared/icon-hamburger.svg";
 
 import classes from "./styles.module.scss";
 
