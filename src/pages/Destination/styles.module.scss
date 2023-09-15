@@ -1,0 +1,172 @@
+@import "../../styles/mixins";
+
+.content {
+  background: url("/assets/destination/background-destination-desktop.jpg")
+    no-repeat fixed center / cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 212px 163px 0;
+  overflow: auto;
+}
+
+.intro {
+  @include intro;
+  margin-bottom: 64px;
+  .introIndex {
+    @include introIndex;
+  }
+}
+
+.changingContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 74px;
+}
+
+.imageContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  img {
+    padding-top: 24px;
+  }
+}
+
+.textContent {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.linksList {
+  display: flex;
+  height: 100%;
+  gap: 35px;
+  text-transform: uppercase;
+  li {
+    position: relative;
+    font-size: 16px;
+    letter-spacing: 2.7px;
+    cursor: pointer;
+  }
+}
+
+.title {
+  font-size: 100px;
+  font-weight: 400;
+  color: #fff;
+  margin: 37px 0 14px 0;
+}
+
+.text {
+  @include text;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background: #383b4b;
+  opacity: 0.25;
+  margin: 54px 0 28px 0;
+}
+
+.details {
+  display: flex;
+  gap: 80px;
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #fff;
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+  span {
+    color: #d0d6f9;
+    font-size: 14px;
+    letter-spacing: 2.362px;
+    text-transform: uppercase;
+  }
+}
+
+.activeLink,
+.hovered {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  margin-top: 12px;
+}
+
+.hovered {
+  background-color: transparent;
+}
+
+.linksList {
+  li:hover {
+    .hovered {
+      background-color: #ffffff5b;
+    }
+  }
+}
+
+@media (max-width: 1438.98px) {
+  .content {
+    background-image: url("/assets/destination/background-destination-tablet.jpg");
+    padding: 136px 60px 0;
+  }
+  .intro {
+    @include introTablet;
+    .introIndex {
+      @include introIndexTablet;
+    }
+  }
+  .changingContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 53px;
+  }
+  .imageContainer {
+    width: 30%;
+  }
+  .textContent {
+    width: 55%;
+    align-items: center;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 80px;
+    margin: 32px 0 8px 0;
+  }
+  .text {
+    @include textTablet;
+  }
+  hr {
+    margin: 49px 0 28px 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .content {
+    background-image: url("/public/assets/destination/background-destination-mobile.jpg");
+    text-align: center;
+    padding: 130px 24px 0;
+  }
+  .intro {
+    @include introMobile;
+    .introIndex {
+      @include introIndexMobile;
+    }
+  }
+  .linksList {
+    gap: 26px;
+  }
+  .textContent {
+    width: 100%;
+  }
+  .details {
+    flex-direction: column;
+    gap: 32px;
+  }
+}

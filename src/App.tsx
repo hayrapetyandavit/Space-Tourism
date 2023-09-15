@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
+import MainRoutes from "./MainRoutes";
 
-const App: React.FC = () => {
-  return <>Project init</>;
+const App: FC = () => {
+  return <MainRoutes />;
 };
 
 export default App;

@@ -1,0 +1,65 @@
+@mixin absoluteCentering {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin intro {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 4.725px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@mixin introTablet {
+  font-size: 20px;
+  letter-spacing: 3.375px;
+}
+
+@mixin introMobile {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1.7px;
+  text-align: center;
+}
+
+@mixin introIndex {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4.725px;
+  color: #fff;
+  opacity: 0.25;
+  margin-right: 28px;
+}
+
+@mixin introIndexTablet {
+  font-size: 20px;
+  letter-spacing: 3.375px;
+  margin-right: 19px;
+}
+
+@mixin introIndexMobile {
+  font-size: 16px;
+  letter-spacing: 1.7px;
+  margin-right: 8px;
+}
+
+@mixin text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+@mixin textTablet {
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+}
+
+@mixin textMobile {
+  font-size: 16px;
+  letter-spacing: 1.7px;
+  margin-right: 8px;
+}
