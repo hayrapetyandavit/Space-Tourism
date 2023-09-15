@@ -1,6 +1,7 @@
 @import "../../styles/mixins";
 
 .content {
+  position: relative;
   background: url("/assets/technology/background-technology-desktop.jpg")
     no-repeat fixed center / cover;
   height: 100vh;

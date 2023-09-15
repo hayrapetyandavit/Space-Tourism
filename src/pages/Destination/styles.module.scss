@@ -4,6 +4,8 @@
   background: url("/assets/destination/background-destination-desktop.jpg")
     no-repeat fixed center / cover;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   padding: 212px 163px 0;
   overflow: auto;
 }

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
+
 import Header from "../components/Header";
 
 import classes from "./stylies.module.scss";
 
-const Layout: React.FC = () => {
+const Layout: FC = () => {
   return (
     <>
       <Header />

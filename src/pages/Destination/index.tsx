@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as THREE from 'three';
-import { useKeyPress } from "../../hooks/useKeyPress";
-import data from "../../../public/assets/data.json";
-import soundSpace from "../../../public/assets/space.mp3"
+import * as THREE from "three";
+
 import { useResize } from "../../hooks/useResize";
-import { genId } from "../../utils/genId";
-import classes from "./styles.module.scss";
+import { useKeyPress } from "../../hooks/useKeyPress";
+
+import data from "../../../public/assets/data.json";
+import soundSpace from "../../../public/assets/space.mp3";
+
+import View from "./View";
 
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isTablet, setTablet] = useState<boolean>(false);
   const [isMobile, setMobile] = useState<boolean>(false);
 
-  const containerRef = useRef<any | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleLinkClick = (index: number) => {
     setActiveIndex(index);
@@ -44,12 +46,19 @@ const Destination: React.FC = () => {
     renderer.setSize(canvasWidth, canvasHeight);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, canvasWidth / canvasHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      canvasWidth / canvasHeight,
+      0.1,
+      1000
+    );
 
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
-    const planetTexture = new THREE.TextureLoader().load(data.destinations[activeIndex].images.horizontal);
+    const planetTexture = new THREE.TextureLoader().load(
+      data.destinations[activeIndex].images.horizontal
+    );
 
     const planet = new THREE.Mesh(
       new THREE.SphereGeometry(1.4, 64, 64),
@@ -74,13 +83,17 @@ const Destination: React.FC = () => {
         containerRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
-    }
+    };
   }, [activeIndex, isTablet, isMobile]);
-
 
   useEffect(() => {
     const container = containerRef.current;
-    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      container!.clientWidth / container!.clientHeight,
+      0.1,
+      1000
+    );
     const listener = new THREE.AudioListener();
 
     camera.add(listener);
@@ -94,58 +107,20 @@ const Destination: React.FC = () => {
       sound.setVolume(0.5);
       sound.play();
     });
-    
+
     return () => {
       sound.pause();
-    }
-  }, [])
+    };
+  }, []);
 
   return (
-    <div className={classes.content}>
-      <h2 className={classes.intro}>
-        <span className={classes.introIndex}>01</span> pick your destination
-      </h2>
-      <div className={classes.changingContent}>
-        <div className={classes.imageContainer} ref={containerRef}></div>
-        <div className={classes.textContent}>
-          <nav className={classes.navbarDestination}>
-            <ul className={classes.linksList}>
-              {data &&
-                data.destinations.map((item, index) => (
-                  <li
-                    id={`${index}`}
-                    key={genId()}
-                    onClick={() => handleLinkClick(index)}
-                  >
-                    <span>{item.name}</span>
-                    {activeIndex === index ? (
-                      <div className={classes.activeLink}></div>
-                    ) : null}
-                    <div className={classes.hovered}></div>
-                  </li>
-                ))}
-            </ul>
-          </nav>
-          <h1 className={classes.title}>
-            {data.destinations[activeIndex].name}
-          </h1>
-          <p className={classes.text}>
-            {data.destinations[activeIndex].description}
-          </p>
-          <hr />
-          <div className={classes.details}>
-            <div className={classes.distance}>
-              <span>AVG. DISTANCE</span>
-              {data.destinations[activeIndex].distance}
-            </div>
-            <div className={classes.time}>
-              <span>Est. travel time</span>
-              {data.destinations[activeIndex].travel}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <View
+      data={data}
+      activeIndex={activeIndex}
+      handleLinkClick={handleLinkClick}
+      containerRef={containerRef}
+    />
   );
-}
+};
+
 export default Destination;
