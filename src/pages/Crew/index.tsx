@@ -33,8 +33,14 @@ const Crew: React.FC = () => {
     clearTimeout(timeoutRef.current);
     startTimeout();
   };
-console.log(data)
-  return <View data={data} activeIndex={activeIndex} handleLinkClick={handleLinkClick} />;
+
+  return (
+    <View
+      data={data}
+      activeIndex={activeIndex}
+      handleLinkClick={handleLinkClick}
+    />
+  );
 };
 
 export default Crew;

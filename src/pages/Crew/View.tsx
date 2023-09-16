@@ -36,7 +36,7 @@ const View: FC<IProps> = ({ data, activeIndex, handleLinkClick }) => {
           </ul>
         </div>
         <div className={classes.imageContainer}>
-          <img src={data.crew[activeIndex].images.png} alt="Staff image" />
+          <img src={data.crew[activeIndex].images.png} alt={data.crew[activeIndex].name} />
         </div>
       </div>
     </div>

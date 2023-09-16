@@ -1,9 +1,11 @@
-import React, { FC } from "react";
-
+import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { genId } from "../../utils/genId";
 
-import logo from "../../assets/shared/logo.svg";
+import { genId } from "../../utils/genId";
+import { useResize } from "../../hooks/useResize";
+
+import mobileLogo from "../../assets/logo/logo-34x34.png";
+import defaultLogo from "../../assets/logo/logo-48x48.png";
 import menuClose from "../../assets/shared/icon-close.svg";
 import menuOpen from "../../assets/shared/icon-hamburger.svg";
 
@@ -28,10 +30,23 @@ const View: FC<IProps> = (props) => {
     handleLogoClick,
   } = props;
 
+  const [isMobile, setMobile] = useState<boolean>(false);
+  const [logoSrc, setLogoSrc] = useState<string>(defaultLogo);
+
+  useResize(767.98, setMobile);
+
+  useEffect(() => {
+    if (isMobile) {
+      setLogoSrc(mobileLogo);
+    } else {
+      setLogoSrc(defaultLogo);
+    }
+  }, [isMobile]);
+
   return (
     <header className={classes.header}>
       <Link to="/" className={classes.logoLInk}>
-        <img src={logo} alt="Logo" onClick={handleLogoClick} />
+        <img src={logoSrc} alt="Logo" onClick={handleLogoClick} />
       </Link>
       <div
         className={classes.burgerMenu}
