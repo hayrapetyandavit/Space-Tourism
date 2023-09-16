@@ -5,7 +5,7 @@
       "images": {
         "png": "./src/assets/destination/",
         "webp": "./src/assets/destination/image-moon.webp",
-        "horizontal": "./src/assets/destination/moon-map.jpg"
+        "horizontal": "./dist/assets/destination/moon-map.jpg"
       },
       "description": "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
       "distance": "384,400 km",
@@ -16,7 +16,7 @@
       "images": {
         "png": "/src/assets/destination/image-mars.png",
         "webp": "/src/assets/destination/image-mars.webp",
-        "horizontal": "/src/assets/destination/mars-map.jpg"
+        "horizontal": "/dist/assets/destination/mars-map.jpg"
       },
       "description": "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
       "distance": "225 mil. km",
@@ -38,7 +38,7 @@
       "images": {
         "png": "/src/assets/destination/image-titan.png",
         "webp": "/src/assets/destination/image-titan.webp",
-        "horizontal": "/src/assets/destination/titan-map.webp"
+        "horizontal": "./src/assets/destination/titan-map.webp"
       },
       "description": "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
       "distance": "1.6 bil. km",
