@@ -92,19 +92,22 @@
 @media (max-width: 767.98px) {
   .content {
     background-image: url("../../assets/home/background-home-mobile.jpg");
-    gap: 60px;
-    padding: 154px 24px 48px 24px;
+    gap: 50px;
+    padding: 124px 24px 48px 24px;
   }
   .intro {
     @include introMobile;
   }
   .textContent {
     width: 100%;
-    gap: 14px;
+    gap: 12px;
+    .text {
+      width: 100%
+    }
   }
 
   .title {
-    font-size: 80px;
+    font-size: 74px;
     line-height: 100px;
   }
   .text {
