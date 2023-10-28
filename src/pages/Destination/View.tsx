@@ -1,7 +1,9 @@
 import React, { FC } from "react";
+import { motion } from "framer-motion";
 
 import { genId } from "../../utils/genId";
 import { dataType } from "../../types/dataType";
+import { RIGHT_ANIMATE } from "../../utils/constants/motion";
 
 import classes from "./styles.module.scss";
 
@@ -22,7 +24,14 @@ const View: FC<IProps> = (props) => {
       </h2>
       <div className={classes.changingContent}>
         <div className={classes.imageContainer} ref={containerRef}></div>
-        <div className={classes.textContent}>
+        <motion.div
+          className={classes.textContent}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={RIGHT_ANIMATE}
+          transition={{ duration: 1.1 }}
+        >
           <nav className={classes.navbarDestination}>
             <ul className={classes.linksList}>
               {data &&
@@ -58,7 +67,7 @@ const View: FC<IProps> = (props) => {
               {data.destinations[activeIndex].travel}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

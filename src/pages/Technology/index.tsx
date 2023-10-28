@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useResize } from "../../hooks/useResize";
 import { useKeyPress } from "../../hooks/useKeyPress";
 
-import data from "../../assets/data.json";
+import data from "../../../public/assets/data.json";
 
 import View from "./View";
 

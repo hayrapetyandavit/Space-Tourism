@@ -1,4 +1,5 @@
 @import "../../styles/mixins";
+@import "../../styles/variables";
 
 .content {
   position: relative;
@@ -15,7 +16,7 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: url("../../assets/crew/background-crew-desktop.jpg") no-repeat fixed
+  background: url("/assets/crew/background-crew-desktop.jpg") no-repeat fixed
     center / cover;
   filter: blur(12px);
 }
@@ -49,7 +50,7 @@
 }
 
 .subtitle {
-  color: #fff;
+  color: $white;
   font-size: 32px;
   font-weight: 400;
   text-transform: uppercase;
@@ -59,7 +60,7 @@
 
 .title {
   font-family: Bellefair;
-  color: #fff;
+  color: $white;
   font-size: 56px;
   font-weight: 400;
   text-transform: uppercase;
@@ -81,7 +82,7 @@
     height: 15px;
     flex-shrink: 0;
     border-radius: 15px;
-    background: #fff;
+    background: $white;
     opacity: 0.17;
     cursor: pointer;
   }
@@ -95,7 +96,7 @@
     padding: 240px 155px 0 155px;
   }
   .content::before {
-    background: url("../../assets/crew/background-crew-tablet.jpg") no-repeat fixed
+    background: url("/assets/crew/background-crew-tablet.jpg") no-repeat fixed
       center / cover;
   }
   .intro {
@@ -159,7 +160,7 @@
     padding: 180px 34px 0 34px;
   }
   .content::before {
-    background: url("../../assets/crew/background-crew-mobile.jpg") no-repeat fixed
+    background: url("/assets/crew/background-crew-mobile.jpg") no-repeat fixed
       center / cover;
   }
   .intro {
@@ -193,7 +194,7 @@
   }
   .imageContainer {
     height: 30vh;
-    border-bottom: 2px solid #383b4b;
+    border-bottom: 2px solid $border-line;
     img {
       width: 100%;
       height: 100%;

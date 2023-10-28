@@ -1,3 +1,5 @@
+@import "./variables";
+
 @mixin absoluteCentering {
   position: absolute;
   left: 50%;
@@ -9,7 +11,7 @@
   font-size: 28px;
   font-weight: 400;
   letter-spacing: 4.725px;
-  color: #fff;
+  color: $white;
   text-transform: uppercase;
 }
 
@@ -29,7 +31,7 @@
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 4.725px;
-  color: #fff;
+  color: $white;
   opacity: 0.25;
   margin-right: 28px;
 }

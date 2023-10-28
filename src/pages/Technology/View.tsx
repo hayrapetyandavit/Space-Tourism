@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 import { genId } from "../../utils/genId";
 import { dataType } from "../../types/dataType";
+import { LEFT_ANIMATE } from "../../utils/constants/motion";
 
 import classes from "./styles.module.scss";
 
@@ -18,7 +20,14 @@ const View: FC<IProps> = ({ data, activeIndex, setActiveIndex }) => {
         <span className={classes.introIndex}>03</span> space lounch 101
       </h2>
       <div className={classes.changingContent}>
-        <div className={classes.textContent}>
+        <motion.div
+          className={classes.textContent}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={LEFT_ANIMATE}
+          transition={{ duration: 1.1 }}
+        >
           <ul className={classes.linksList}>
             {data &&
               data.technology.map((_item, index) => (
@@ -42,7 +51,7 @@ const View: FC<IProps> = ({ data, activeIndex, setActiveIndex }) => {
               {data.technology[activeIndex].description}
             </p>
           </div>
-        </div>
+        </motion.div>
         <div className={classes.imageContainer}>
           <img
             src={data.technology[activeIndex].images.portrait}

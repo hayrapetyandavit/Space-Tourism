@@ -1,18 +1,16 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import { genId } from "../../utils/genId";
-import { useResize } from "../../hooks/useResize";
 
-import mobileLogo from "../../assets/logo/logo-34x34.png";
-import defaultLogo from "../../assets/logo/logo-48x48.png";
-import menuClose from "../../assets/shared/icon-close.svg";
-import menuOpen from "../../assets/shared/icon-hamburger.svg";
+import menuClose from "/assets/shared/icon-close.svg";
+import menuOpen from "/assets/shared/icon-hamburger.svg";
 
 import classes from "./styles.module.scss";
 
 interface IProps {
-  linkData: string[];
+  logoSrc: string;
+  links: string[];
   isMenuOpen: boolean;
   activeLink: string;
   handleBurgerClick: () => void;
@@ -22,26 +20,14 @@ interface IProps {
 
 const View: FC<IProps> = (props) => {
   const {
-    linkData,
+    logoSrc,
+    links,
     isMenuOpen,
     activeLink,
     handleBurgerClick,
     handleLinkClick,
     handleLogoClick,
   } = props;
-
-  const [isMobile, setMobile] = useState<boolean>(false);
-  const [logoSrc, setLogoSrc] = useState<string>(defaultLogo);
-
-  useResize(767.98, setMobile);
-
-  useEffect(() => {
-    if (isMobile) {
-      setLogoSrc(mobileLogo);
-    } else {
-      setLogoSrc(defaultLogo);
-    }
-  }, [isMobile]);
 
   return (
     <header className={classes.header}>
@@ -67,8 +53,8 @@ const View: FC<IProps> = (props) => {
       >
         <hr className={classes.navHr} />
         <ul className={classes.linksList}>
-          {linkData &&
-            linkData.map((link, index) => (
+          {links &&
+            links.map((link, index) => (
               <li key={genId()}>
                 <Link
                   className={classes.link}

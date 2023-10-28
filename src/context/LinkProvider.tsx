@@ -11,7 +11,6 @@ const LinkProvider: React.FC<any> = ({ children }) => {
 
   const [activeLink, setActiveLink] = useState<string>(initialLink);
 
-  console.log();
 
   return (
     <LinkContext.Provider value={{ activeLink, setActiveLink }}>

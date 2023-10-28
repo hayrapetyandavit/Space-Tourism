@@ -1,8 +1,9 @@
 @import "../../styles/mixins";
+@import "../../styles/variables";
 
 .content {
   position: relative;
-  background: url("../../assets/technology/background-technology-desktop.jpg")
+  background: url("/assets/technology/background-technology-desktop.jpg")
     no-repeat fixed center / cover;
   height: 100vh;
   padding: 212px 0 0 163px;
@@ -31,7 +32,7 @@
 }
 
 .subtitle {
-  color: #d0d6f9;
+  color: $intro;
   font-size: 16px;
   letter-spacing: 2.7px;
   margin-bottom: 11px;
@@ -40,7 +41,7 @@
 
 .title {
   font-family: Bellefair;
-  color: #fff;
+  color: $white;
   font-size: 56px;
   font-weight: 400;
   text-transform: uppercase;
@@ -75,25 +76,25 @@
     align-items: center;
     font-size: 32px;
     font-weight: 400;
-    color: #fff;
+    color: $white;
     border-radius: 100%;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.363);
+    border: 1px solid $link;
     cursor: pointer;
     text-align: center;
     &:hover {
-      border: 1px solid rgba(255, 255, 255, 1);
+      border: 1px solid $white;
     }
   }
   .activeLink {
-    background: #fff;
-    color: #0b0d17;
+    background: $white;
+    color: $dark;
   }
 }
 
 @media (max-width: 1438.98px) {
   .content {
-    background-image: url("../../assets/technology/background-technology-tablet.jpg");
+    background-image: url("/assets/technology/background-technology-tablet.jpg");
     padding: 212px 0 0 0;
   }
   .intro {
@@ -152,7 +153,7 @@
 
 @media (max-width: 767.98px) {
   .content {
-    background-image: url("../../assets/technology/background-technology-mobile.jpg");
+    background-image: url("/assets/technology/background-technology-mobile.jpg");
   }
   .intro {
     width: 100%;

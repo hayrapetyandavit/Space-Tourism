@@ -4,26 +4,33 @@ import * as THREE from "three";
 import { useResize } from "../../hooks/useResize";
 import { useKeyPress } from "../../hooks/useKeyPress";
 
-import data from "../../assets/data.json";
-import soundSpace from "../../../src/assets/space.mp3";
+import soundSpace from "/assets/space.mp3";
+import data from "../../../public/assets/data.json";
 
 import View from "./View";
+
+const horizontalImages: { [key: number]: string } = {
+  0: "/assets/destination/moon-map.jpg",
+  1: "/assets/destination/mars-map.jpg",
+  2: "/assets/destination/europa-map.png",
+  3: "/assets/destination/titan-map.webp",
+};
 
 const Destination: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isTablet, setTablet] = useState<boolean>(false);
   const [isMobile, setMobile] = useState<boolean>(false);
 
+  useResize(1438.98, setTablet);
+  useResize(767.98, setMobile);
+
+  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 3);
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleLinkClick = (index: number) => {
     setActiveIndex(index);
   };
-
-  useKeyPress(setActiveIndex, ["ArrowRight", "ArrowLeft"], 3);
-
-  useResize(1438.98, setTablet);
-  useResize(767.98, setMobile);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -57,7 +64,7 @@ const Destination: React.FC = () => {
     scene.add(ambientLight);
 
     const planetTexture = new THREE.TextureLoader().load(
-      data.destinations[activeIndex].images.horizontal
+      horizontalImages[activeIndex]
     );
 
     const planet = new THREE.Mesh(
